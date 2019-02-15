@@ -1,0 +1,30 @@
+l_Library_Management: l_Library
+	@sudo mkdir -p ${WORK_D}/Library/Management
+	@sudo chown root:wheel ${WORK_D}/Library/Management
+	@sudo chmod 755 ${WORK_D}/Library/Management
+
+l_Library_Management_scriptRunner: l_Library_Management
+	@sudo mkdir -p ${WORK_D}/Library/Management/scriptRunner
+	@sudo chown root:wheel ${WORK_D}/Library/Management/scriptRunner
+	@sudo chmod 755 ${WORK_D}/Library/Management/scriptRunner
+
+l_Library_Management_scriptRunner_once: l_Library_Management_scriptRunner
+	@sudo mkdir -p ${WORK_D}/Library/Management/scriptRunner/once
+	@sudo chown root:wheel ${WORK_D}/Library/Management/scriptRunner/once
+	@sudo chmod 755 ${WORK_D}/Library/Management/scriptRunner/once
+  
+l_Library_Management_scriptRunner_every: l_Library_Management_scriptRunner
+	@sudo mkdir -p ${WORK_D}/Library/Management/scriptRunner/every
+	@sudo chown root:wheel ${WORK_D}/Library/Management/scriptRunner/every
+	@sudo chmod 755 ${WORK_D}/Library/Management/scriptRunner/every
+
+pack-Library-Management-scriptRunner-once-%: % l_Library_Management_scriptRunner_once
+	@sudo ${INSTALL} -m 755 -g wheel -o root "${<}" ${WORK_D}/Library/Management/scriptRunner/once
+  
+pack-Library-Management-scriptRunner-every-%: % l_Library_Management_scriptRunner_every
+	@sudo ${INSTALL} -m 755 -g wheel -o root "${<}" ${WORK_D}/Library/Management/scriptRunner/every
+
+l_System_Library_User_Template_Library_Preferences:
+	@sudo mkdir -p ${WORK_D}/System/Library/User\ Template/German.lproj/Library/Preferences
+	@sudo chown root:wheel ${WORK_D}/System/Library/User\ Template/German.lproj/Library/Preferences
+	@sudo chmod 700 ${WORK_D}/System/Library/User\ Template/German.lproj/Library/Preferences
